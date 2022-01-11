@@ -1,4 +1,6 @@
 let poem = ''
+let checkingAPIeventID = null
+let loadingPercent = 0
 
 // Initialize Cloud Firestore through Firebase
 firebase.initializeApp({
@@ -13,6 +15,8 @@ var db = firebase.firestore();
 let output = document.getElementById("poemoutput")
 let input = document.getElementById("poeminput")
 let spinner = document.getElementById("spinner")
+let loadingElement = document.getElementById("loading")
+let loadingbarElement = document.getElementById("loadingbar")
 
 function cleanPoem(poem){
     console.log(poem)
@@ -49,7 +53,7 @@ function FirstRequestToGraph(url, data) {
           body: data 
     })
     .then(function(response) {
-        return response.json();
+        return response.json()
     })
     .then(function(json) {
         return json
@@ -58,7 +62,6 @@ function FirstRequestToGraph(url, data) {
         console.log(`Error: ${err}`)
     });
 }
-
 
 function savePoem(title, poem, language){
   db.collection("poemas").add({
@@ -75,10 +78,26 @@ function savePoem(title, poem, language){
 
 }
 
-function generatePoem(){
-    spinner.style.visibility = "visible"
- 
+function loadingBarMove(percent) {
+  loadingElement.style.display = "block"
+  if (percent >= 100) {
+    clearInterval(checkingAPIeventID);
+    loadingElement.style.display = "none"
+  } else {
+    percent+=10; 
+    loadingbarElement.style.width = percent + '%'; 
+  }
+}
 
+function loadingModel(){
+  loadingPercent += 10
+  loadingBarMove(loadingPercent)
+  generatePoem()
+}
+
+function generatePoem(){
+    spinner.style.visibility = "hidden"
+    
     initText=''
    
     let urlAPI = "https://poems.asst.workers.dev"
@@ -100,6 +119,16 @@ function generatePoem(){
     console.log(poem)
     FirstRequestToGraph(urlAPI,poem)
       .then(data => {
+          console.log(data, checkingAPIeventID)
+          if("error" in data && !checkingAPIeventID) {
+            checkingAPIeventID = setInterval(loadingModel, 1000)
+            console.log(data)
+            return
+          }else{
+            clearInterval(checkingAPIeventID)
+            loadingElement.style.display = "none"
+            loadingPercent = 0
+          }
           toShow = data[0].generated_text
           output.innerText = cleanPoem(toShow.slice(0, toShow.length))
           
@@ -110,7 +139,6 @@ function generatePoem(){
           spinner.style.visibility = "hidden"
         // console.log(toShow); // JSON data parsed by `data.json()` call
       });
-
 }
 
 function generate(element){
