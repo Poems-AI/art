@@ -8,8 +8,13 @@
     <link rel="stylesheet" href="css.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="./gallery/circular/stylesheet.css">
+    <link rel="stylesheet" href="./gallery/entypo/entypo.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    
     <style>
-      body,h1,h2,h3,h4,h5,h6,p {font-family: "Karma", sans-serif; color: white;}
+      body,h1,h2,h3,h4,h5,h6,p {font-family: circular, 'segoe ui', sans-serif; color: black;}
       .w3-bar-block .w3-bar-item {padding:20px}
       p.ex1 {
         position: relative;
@@ -22,14 +27,16 @@
     <script src="js/p5.speech.js"></script>
     <script src="js/p5.asciiart.min.js"></script>
     <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
-    
+    <script src="src/three.r119.min.js"></script>
+    <script src="src/vanta.net.min.js"></script>
+
     <title>Poesia + IA = ARTE</title>
 
     <style>
       body {padding: 0px;
             margin:0px;
-            color: #fff;
-            background-color:#000;} 
+            color: #000;
+            background-color:#fff;} 
       .widget{
         color: white;
         position:fixed ;
@@ -48,7 +55,7 @@
  
 
     <!-- Sidebar (hidden by default) -->
-  <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left w3-black" style="display:none;z-index:2;width:40%;min-width:300px;color: #fff;" id="mySidebar">
+  <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left w3-white" style="display:none;z-index:2;width:40%;min-width:300px;color: #fff;" id="mySidebar">
     <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button ">Cerrar Menu</a>
 
     <a href="#experimentation" onclick="w3_close()" class="w3-bar-item w3-button">Experimentación</a>
@@ -61,15 +68,38 @@
  
   
   <!-- Top menu -->
-  <div class="w3-top">
-    <div class=" w3-xlarge w3-padding w3-black" style="max-width:1200px;margin:auto">
-      <div class="w3-button w3-padding w3-left" onclick="w3_open()">☰</div>
-      <div class="w3-center w3-padding"> Poesia + IA = ARTE </div>
+  <!-- class="w3-top" -->
+  <div id="vanta_efect" style="height: 800px;" >
+    <div class=" w3-top w3-xlarge w3-button w3-padding w3-left-align"  onclick="w3_open()" style="margin: 20px; color: #fff;">☰</div>
+    <div class=" w3-xlarge w3-padding " style="max-width:1200px;margin:auto; color: #fff;">
+      
+    <div class="w3-center w3-padding">Poesia + IA = ARTE </div>
       <div class="w3-display-topright w3-small w3-padding"> 
       <a href="index.es.html">ESPAÑOL</a> /
       <a href="index.en.html">ENGLISH</a>
+    </div>
+    </div>
+
+  <!-- AI Section -->
+    <div class="digitaltwinZone" style="margin-top: 100px;">  
+      <div class="digitaltwin w3-container  w3-center w3-padding-32" id="AI" >  
+        
+        <h3 style="color: #fff;">Interacciona con la Inteligencia Artificial</h3><br>
+        <span id="spinner" class="spinner">Cargando la IA</span>
+
+        <div class="w3-center w3-margin-bottom">
+          <input id="poeminput" class=" w3-round-large" type="text" size="50" style=" height:32px; text-align: center;" onkeydown="generate(this)" placeholder="Escribe una frase aquí y la IA generará un poema"><br> <br> 
+        </div>
+          
+        <button class=" btn  first " onclick="generatePoem()">Generar poema</button>
+
+        <div class="w3-row-padding w3-padding-16 w3-center" >
+          <pre id="poemoutput"  class="digitaltwinpoem" ></pre><br><br>
+        </div>
+            
       </div>
     </div>
+
   </div>
 
   <div id="chromeAlert" class="alert w3-padding w3-content" style="max-width:1200px;margin-top:100px">
@@ -90,6 +120,7 @@
    -->
   <hr id="experimentation" style="opacity: 0%;" >
     <!-- !PAGE CONTENT! -->
+
 
   <div class="w3-main w3-content w3-margin-32" style="max-width:1200px;height:1200px; color: #000;">
 
@@ -142,10 +173,9 @@
   
  <hr id="AI" style="opacity: 0%;" >
 
- <hr  style="margin-top: 100px;"> 
 
   <!-- AI Section -->
-  <div class="digitaltwinZone">
+  <!-- <div class="digitaltwinZone">
     
     <img src= "images/background_color.jpg" class="digitaltwinback">
   
@@ -164,7 +194,7 @@
       </div>
           
     </div>
-  </div>
+  </div> -->
 
 
 
@@ -219,7 +249,16 @@
     <a href="https://www.youtube.com/user/Waskoi" target="_blank"><i class="fa fa-youtube w3-hover-opacity" style="font-size: 50px;"></i></a>
   </div>
 
-  <h2 id="events">Eventos pasados</h2>
+  <h2 id="events" style="color: #fff;">Eventos</h2>
+
+  <div class="w3-card-4  w3-center" style="max-width:300px;  ">
+    <div class="w3-container w3-center w3-blue">
+      <p>Ciudad de Mexico / 4-5 Febrero, 2022</p>
+    </div>
+      <img src="events/2022_feb/KM 2022 cartelsabado.jpg" alt="Alps" style="width:100%">
+    </a>
+  </div>
+
   <div class="w3-row w3-padding-32 " style="max-width: 1200px; margin: auto;">
     
 
@@ -243,6 +282,21 @@
 
   </div>
 </footer>
+
+<script>
+VANTA.NET({
+  el: "#vanta_efect",
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: false,
+  minHeight: 200.00,
+  minWidth: 200.00,
+  scale: 1.00,
+  scaleMobile: 1.00,
+  color: 0x603fff,
+  // showDots: false
+})
+</script>
 
   <script>
     // Script to open and close sidebar
