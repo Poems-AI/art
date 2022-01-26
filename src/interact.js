@@ -99,10 +99,15 @@ function generatePoem(){
     spinner.style.visibility = "hidden"
     
     initText=''
-   
+
+    let url__ = location.href
+    let url_array = url__.split(".")
+    let url_length = url_array.length
+
     let urlAPI = "https://poems.asst.workers.dev"
     var browserLanguage = navigator.language
-    if (browserLanguage.split("-")[0] == "es"){
+    // if (browserLanguage.split("-")[0] == "es"){
+    if (url_array[url_length-2] == "es"){
         urlAPI = urlAPI + '/?language=es'
         initText = "un lugar, metaverso"
       } else {

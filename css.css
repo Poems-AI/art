@@ -215,16 +215,49 @@ button {
   outline: 0;
 }
 
-/* BUTTON 1 */
-.first {
-  /* border-color: blue; */
+/* BUTTON for generate poems */
+.btn1 {
   color: var(--white);
-  /* box-shadow: 0 0 40px 40px var(--purple) inset, 0 0 0 0 var(--purple); */
-  transition: all 150ms ease-in-out;
-  
- 
+  transition: all 150ms ease-in-out; 
+}
+.btn1:hover {
+  box-shadow: 0 0 10px 0 var(--purple) inset, 0 0 10px 4px var(--purple);
 }
 
-.first:hover {
-  box-shadow: 0 0 10px 0 var(--purple) inset, 0 0 10px 4px var(--purple);
+.btn_poems {
+  box-sizing: border-box;
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid var(--white);
+  border-radius: 0.6em;
+  /* color: red; */
+  cursor: pointer;
+  display: flex;
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: auto;
+  padding: 1.2em 2.8em;
+  text-decoration: none;
+  text-align: center;
+  /* text-transform: uppercase; */
+  /* font-family: 'Montserrat', sans-serif; */
+  font-weight: 700;
+}
+
+.btn_poems:hover
+
+.btn_poems:focus {
+  color: var(--white);
+  outline: 0;
+}
+
+/* BUTTON for Poems */
+.btn2 {
+  color: var(--white);
+  transition: all 150ms ease-in-out;
+}
+.btn2:hover {
+  box-shadow: 0 0 10px 0 var(--white) inset, 0 0 10px 4px var(--white);
 }

@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
     
     <style>
-      body,h1,h2,h3,h4,h5,h6,p {font-family: circular, 'segoe ui', sans-serif; color: black;}
+      body,h1,h2,h3,h4,h5,h6,p {font-family: circular, 'segoe ui', sans-serif; color: white;}
       .w3-bar-block .w3-bar-item {padding:20px}
       p.ex1 {
         position: relative;
@@ -35,8 +35,8 @@
     <style>
       body {padding: 0px;
             margin:0px;
-            color: #000;
-            background-color:#fff;} 
+            color: #fff;
+            background-color:#000;} 
       .widget{
         color: white;
         position:fixed ;
@@ -56,28 +56,26 @@
 
     <!-- Sidebar (hidden by default) -->
   <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left w3-white" style="display:none;z-index:2;width:40%;min-width:300px;color: #fff;" id="mySidebar">
-    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button ">Cerrar Menu</a>
-
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button ">Cerrar Menu </a>
     <a href="#experimentation" onclick="w3_close()" class="w3-bar-item w3-button">Experimentación</a>
     <a href="#AI" onclick="w3_close()" class="w3-bar-item w3-button">Prueba la IA</a>
     <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">Quienes somos</a>
     <a href="#media" onclick="w3_close()" class="w3-bar-item w3-button">Media</a>
-    <a href="#events" onclick="w3_close()" class="w3-bar-item w3-button" >Eventos pasados</a>
     <a href="prensa.html" onclick="w3_close()" class="w3-bar-item w3-button" target="_blank">Prensa</a>
   </nav>
  
   
-  <!-- Top menu -->
-  <!-- class="w3-top" -->
-  <div id="vanta_efect" style="height: 800px;" >
-    <div class=" w3-top w3-xlarge w3-button w3-padding w3-left-align"  onclick="w3_open()" style="margin: 20px; color: #fff;">☰</div>
+  
+  <div id="vanta_efect" style="height: 1000px;" >
+
+    <!-- Top menu -->
+    <div class=" w3-top w3-xlarge  w3-padding w3-left-align closebtn"  onclick="w3_open()" style="margin: 20px; color: #fff;">☰</div>
     <div class=" w3-xlarge w3-padding " style="max-width:1200px;margin:auto; color: #fff;">
-      
-    <div class="w3-center w3-padding">Poesia + IA = ARTE </div>
+      <div class="w3-center w3-padding">Poesia + IA = ARTE </div>
       <div class="w3-display-topright w3-small w3-padding"> 
-      <a href="index.es.html">ESPAÑOL</a> /
-      <a href="index.en.html">ENGLISH</a>
-    </div>
+        <a href="index.es.html">ESPAÑOL</a> /
+        <a href="index.en.html">ENGLISH</a>
+      </div>
     </div>
 
   <!-- AI Section -->
@@ -91,7 +89,14 @@
           <input id="poeminput" class=" w3-round-large" type="text" size="50" style=" height:32px; text-align: center;" onkeydown="generate(this)" placeholder="Escribe una frase aquí y la IA generará un poema"><br> <br> 
         </div>
           
-        <button class=" btn  first " onclick="generatePoem()">Generar poema</button>
+        <button class=" btn  btn1 " onclick="generatePoem()">Generar poema</button>
+        
+        <div id="loading" class="w3-container w3-center w3-center loader">
+          loading AI
+          <div class="w3-border w3-center">
+            <div id="loadingbar" class="w3-grey " style="height:24px;width:0%"> </div>
+          </div>
+        </div>
 
         <div class="w3-row-padding w3-padding-16 w3-center" >
           <pre id="poemoutput"  class="digitaltwinpoem" ></pre><br><br>
@@ -107,20 +112,10 @@
     <strong>Aviso.</strong> Para una mejor experiencia utiliza <a target="_blank" href="https://www.google.com/chrome">Chrome browser</a>.
   </div>
 
-<!-- Coming events -->
-<!-- <hr id="comingEvent" style="opacity: 0%;" > 
-   <div  class="w3-padding-16 w3-center" style="margin-top: 50px;" > 
-    <h1> Próximo evento</h1>
-    <img src="comingEvents/The_poetry_of_algorithm_becomes_art_at_New_York_gallery/TheMyntGalleryFlyer.jpg" style="max-width:400px;margin:auto">
-    
-    <p>Una performance 3.0 de Marcos de la Fuente</p>   
-    <a href="comingEvents/The_poetry_of_algorithm_becomes_art_at_New_York_gallery/TheMyntGallery_Nov11_2021_es.pdf" class="w3-button w3-white w3-border w3-border-white w3-round-large" target="_blank">Más información</a>
 
-  </div>
-   -->
   <hr id="experimentation" style="opacity: 0%;" >
-    <!-- !PAGE CONTENT! -->
 
+  <!-- !PAGE CONTENT! -->
 
   <div class="w3-main w3-content w3-margin-32" style="max-width:1200px;height:1200px; color: #000;">
 
@@ -134,7 +129,9 @@
         <h3>Poesía en el espejo</h3>
         <br>
         <p>En primer plano, el poema aparece al ritmo de la lectura del poeta y la IA interactúa con la imagen captada por la cámara del dispositivo.</p>
+          
       </div>
+      
 
       <div class="photogrid1" >
         <a href="vis1.html?poem=picasso_in_botswana.es">
@@ -144,11 +141,11 @@
       </div>
       
       <div class="photogrid1" >
-        <a href="vis3.html?poem=new_worlds.ga">
+        <a href="vis3.html?poem=new_worlds.es">
         <img src="images/vis3_image.jpg" alt="The AI tree" style="width:100%"></a>
         <h3>El árbol de la IA</h3>
         <br>
-        <p> Cada rama del árbol es generado por el peso que cada palabra tiene en el poema, el peso es dado según la interpretacion de la IA.</p>
+        <p> Cada rama del árbol es generado por el peso que cada palabra tiene en el poema, el peso es dado según la interpretacion de la IA.</p>    
       </div>
 
       <div class="photogrid1" >
@@ -158,44 +155,21 @@
         <br>
         <p>Explorando cómo la IA encadena las palabras del poema. </p>
       </div>
-      <div class="photogrid1" >
 
+      <div class="photogrid1" >
         <a href="vis5.html?poem=burn_after_selling.es">
         <img src="images/vis5_image.jpg" alt="vis4" style="width:100%"></a>
         <h3>Superposición</h3>
         <br>
         <p>Este experimento busca representar la superposición de las ideas entre el ser humano y su interpolación digital, y cómo el concepto final preserva el valor a transmitir.</p>
-
+        
       </div>
 
       
     </div>
+    
   
  <hr id="AI" style="opacity: 0%;" >
-
-
-  <!-- AI Section -->
-  <!-- <div class="digitaltwinZone">
-    
-    <img src= "images/background_color.jpg" class="digitaltwinback">
-  
-    <div class="digitaltwin w3-container  w3-center" id="AI">  
-      
-      <h3>Interacciona con el Digital twin poet</h3><br>
-      <p>Escribe un título y el digital twin poet generará un poema</p>
-      <span id="spinner" class="spinner">Cargando la IA</span>
-      <div class="w3-center w3-margin-bottom">
-        <input id="poeminput" type="text" size="40" style=" height:32px; text-align: center;" onkeydown="generate(this)"><br> <br> 
-      </div>
-        
-      <button onclick="generatePoem()">Generar poema</button>
-      <div class="w3-row-padding w3-padding-16 w3-center" >
-        <pre id="poemoutput"  class="digitaltwinpoem" ></pre><br><br>
-      </div>
-          
-    </div>
-  </div> -->
-
 
 
   <hr style="margin-bottom: 100px;"> 
@@ -297,16 +271,16 @@ VANTA.NET({
 })
 </script>
 
-  <script>
-    // Script to open and close sidebar
-    function w3_open() {
-      document.getElementById("mySidebar").style.display = "block";
-    }
-      
-    function w3_close() {
-      document.getElementById("mySidebar").style.display = "none";
-    }
-  </script>
+<script>
+  // Script to open and close sidebar
+  function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+  }
+    
+  function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+  }
+</script>
 
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
